@@ -1,0 +1,45 @@
+********************************************
+* Computational Biology Applications (CBA) *
+********************************************
+version 0.96		Mar 01, 2007
+Yo Matsuo
+
+====================
+== HOW TO INSTALL ==
+====================
+	Move to the directory 'src', and type:
+		make
+	and then,
+		make install
+	That's all.
+
+=========================
+== using Boost library ==
+=========================
+By default, BioSequence::find_motif() is not compiled.
+To use it, see README in the 'src' directory.
+
+================================
+== creating your own programs ==
+================================
+To create your own application programs or libraries
+using the CBA library (libcba.a),
+the 'cba.tmpl' provides convenient templates for
+applications, utilities, and Makefile.
+Copy the directory 'cba.tmpl' to a proper directory;
+	e.g.,
+	tar cvf - cba.tmpl | ( cd /your/directory; tar xvf -)
+and read the README file therein.
+
+
+This version of CBA was tested using GNU C++ 3.2 with Boost 1.31.0 on Linux.
+
+REFERENCE:
+Yo Matsuo, "Bioprogramming", Ohmsha, Tokyo, 2005.
+
+======================================================================
+THE CBA SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY WARRANTIES.
+IN NO EVENT, SHALL WE BE LIABLE TO ANY PARTY FOR DIRECT, INDIRECT,
+SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, ARISING OUT OF THE
+USE OF THIS CBA SOFTWARE.
+======================================================================

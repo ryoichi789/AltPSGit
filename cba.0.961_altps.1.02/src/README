@@ -1,0 +1,15 @@
+The function BioSequence::find_motif() needs the Boost regular expression library linked.
+To use the Boost library, 
+
+	1. install the Boost library modules and header files;
+	2. in the Makefile,
+		2-1. modify the values for BOOST_LIBDIR and BOOST_INCDIR properly;
+		2-2. comment out the line "INCLUDE = ";
+		2-3. uncomment the line "INCLUDE = -I$(BOOST_INCDIR)";
+		2-4. comment out the line "LIBS = -lm -L$(LIBDIR) -lcbamain -lcba";
+		2-5. uncomment the line "LIBS = -lm -L$(LIBDIR) -lcbamain -lcba -L$(BOOST_LIBDIR) -lboost_regex-gcc-1_31";
+	3. in the file "use_boost.h", uncomment the "#define CBA_USE_BOOST" line in the file.
+
+In addition, if your program uses the CBA library libcba.a, also modify its Makefile accordingly
+(see cba/cba.tmpl/src/README, for example).
+

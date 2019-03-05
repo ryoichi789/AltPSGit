@@ -1,0 +1,102 @@
+########################################################################
+# NOTE: replace 'PROJECT' and 'project' below
+#       according to your project names
+########################################################################
+
+########################################################################
+# NOTE: need to set environmental variables 'CBA_HOME' and 'CBAX_HOME'
+#       e.g.,
+#         export CBA_HOME=$HOME/cba
+#         export CBAX_HOME=$HOME/cbax
+########################################################################
+
+########################################################################
+# NOTE: need to install Boost library and
+#       set BOOST_LIBDIR and BOOST_INCDIR properly below
+########################################################################
+
+########################################################################
+# NOTE: need to install Xerces-C++ and
+#       set environmental variable 'XERCESROOT' properly
+########################################################################
+
+CPP	= g++
+CPPFLAGS = 
+AR = ar
+ARFLAGS = -rv
+.SUFFIXES: .o .cpp .h
+.cpp.o:
+	$(CPP) $(CPPFLAGS) $(INCLUDE) -c $<
+
+LIBDIR = ../lib
+INCDIR = ../include
+BINDIR = ../bin
+
+CBA_LIBDIR = $(CBA_HOME)/lib
+CBA_INCDIR = $(CBA_HOME)/include
+CBA_BINDIR = $(CBA_HOME)/bin
+
+CBAX_LIBDIR = $(CBAX_HOME)/lib
+CBAX_INCDIR = $(CBAX_HOME)/include
+CBAX_BINDIR = $(CBAX_HOME)/bin
+
+LIBCBA = $(CBA_LIBDIR)/libcba.a $(CBAX_LIBDIR)/libcbax.a
+LIBMAIN = $(CBA_LIBDIR)/libcbamain.a
+LIBPROJECT = $(LIBDIR)/libcbaproject.a
+
+#####################################################################
+# NOTE: set proper directories for Boost and Xerces when using them
+#####################################################################
+BOOST_LIBDIR = /usr/local/lib
+BOOST_INCDIR = /usr/local/include/boost-1_31
+
+XERCESC_LIBDIR = $(XERCESCROOT)/lib
+XERCESC_INCDIR = $(XERCESCROOT)/include
+
+INCLUDE = -I$(CBA_INCDIR) -I$(CBAX_INCDIR) -I$(BOOST_INCDIR) -I$(XERCESC_INCDIR)
+LIBS = -lm -L$(LIBDIR) -lcbaproject\
+	-L$(CBA_LIBDIR) -lcbamain -lcba\
+	-L$(CBAX_LIBDIR) -lcbax\
+	-L$(BOOST_LIBDIR) -lboost_regex-gcc-1_31\
+	-L$(XERCESC_LIBDIR) -lxerces-c
+LDFLAGS =
+
+# NOTE:
+# add utility classes' header and object file names to HEADERS and OBJS;
+# add applications' executable file names to APPS;
+# e.g.,
+# HEADERS = project.h
+# OBJS = project.o
+# APPS = app_project
+HEADERS = 
+OBJS = 
+APPS = 
+
+all: lib $(APPS)
+lib: $(LIBPROJECT)
+
+######################################################################
+# applications
+######################################################################
+
+#
+# NOTE: sample
+#app_project: app_project.o $(OBJS) $(LIBCBA) $(LIBMAIN)
+#	$(CPP) -o $@ app_project.o $(LIBS)
+#app_project.o: app_project.cpp app_project.h $(HEADERS) $(LIBCBA) $(LIBMAIN)
+
+######################################################################
+# utilities
+######################################################################
+
+$(LIBPROJECT): $(OBJS)
+	$(AR) $(ARFLAGS) $@ $?
+	-cp -p $(HEADERS) $(INCDIR)
+# NOTE: sample
+# project.o: project.cpp project.h $(LIBCBA)
+
+install:
+	-cp -p $(APPS) $(BINDIR)
+
+clean:
+	rm -f *.o *.exe $(APPS)

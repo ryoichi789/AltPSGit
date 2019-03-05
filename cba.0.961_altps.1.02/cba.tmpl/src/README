@@ -1,0 +1,24 @@
+==============
+== mksrc.pl ==
+==============
+The Perl script 'mksrc.pl' creates templates for program files.
+For example, to create an application, say, 'your_app',
+execute the command:
+	mksrc.pl -o your_app -a y
+then, two files 'your_app.h' and 'your_app.cpp' will be created,
+which contain barebone source codes to use as initial header and
+implementation files for the application.
+To create a utility class, say, 'YourClass', execute the command:
+	mksrc.pl -o your_class
+then, two files 'your_class.h' and 'your_class.cpp' will be created,
+which contain barebone source codes to use as initial header and
+implementations files for the class.
+
+==============
+== Makefile ==
+==============
+Use Makefile2 as a template when you use Boost.
+
+
+--
+Yo Matsuo, 2006-11-14

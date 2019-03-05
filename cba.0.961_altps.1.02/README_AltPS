@@ -1,0 +1,109 @@
+*************************************************************************
+    AltPS (ALignment Tool for Protein Surfaces) 
+    Ver.1.01     Oct, 2009
+    Ryoichi Minai
+*************************************************************************
+
+1. Install CBA(including_AltPS)
+
+  AltPS is installed with CBA.
+
+  Move to the directory 'src', and type:
+
+  > make
+
+  and then,
+
+  > make install
+
+   (The use of optimizing compiler options is recommended.)
+
+   *CBA:Copyright (c) Yo Matsuo
+
+2. Using AltPS
+
+  [Synopsis]
+
+  > altps -q query_file_pdb1 -t target_file_pdb2 -o directory_name [OPTIONS]
+
+
+  [Options]
+   
+   -q : query PDB filename
+
+   -t : target PDB filename
+
+   -o : output directory (current directory by default)
+
+   -size : minimun size (atom number) for matching surface area [int] 
+           (30 by default)
+
+   -zscore : minimun z-score for matching surface area [float]
+             (4.0 by default)
+
+
+  [Output files]
+    
+    molname1_molname2_region.list:
+       - list of detected similar local surface areas
+         region_#id, atom numbers, similarity score, Z-score are contained
+
+    olname1_molname2_region_#id_alignment.list:
+       - alignment list of local surface atoms at region_#id
+
+    molname1_molname2_region_#id_area_q/t.pdb:
+       - superposed local surface areas at region_#id
+
+    molname1_molname2_region_#id_protein_q/t.pdb:
+       - superposed input protein structures at region_#id
+
+    molname1_molname2_region_#id_spp.dat:
+       - superposition parameters (shift vector and rotation matrix) for the query protein
+       - shift vector (the center of gravity is at the origin)
+	     rotation matrix
+	     shift vector (the gravity center of the target protein)
+
+3. Examples
+
+  Move to the directory 'sample'
+
+  > ./altps -q 1tpo.pdb -t 2prk.pdb -o results
+
+  You can obtain output files at direcory './results'.
+
+
+4. Reference
+
+
+
+
+Thank you for using AltPS!
+
+****************************************************************
+LICENCE
+¡¡AltPS is available for non-commercial use under the BSD license.
+
+Copyright (c) 2009, Ryoichi Minai
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of the author nor the names of its contributors may 
+      be used to endorse or promote products derived from this software 
+      without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED THE COPYRIGHT HOLDERS ''AS IS'' AND ANYEXPRESS OR 
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO 
+EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; 
+OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER 
+IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+POSSIBILITY OF SUCH DAMAGE.
